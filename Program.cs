@@ -9,19 +9,26 @@ do
 
     resultado = int.TryParse(textoNumero, out numero); //se guarda en valor numérico en la variable "numero"
 
-    if (resultado && numero > 0) 
+    if (resultado)
     {
-        //Obtengo la longitud del número ingresado
-        longitudNumero = textoNumero.Length;
-        string numeroInvertido = "";
-
-        //Invierto el número ingresado
-        for (int i = 0; i < longitudNumero; i++)
+        if (numero <= 0 )
         {
-            numeroInvertido = numeroInvertido + textoNumero[longitudNumero-1-i];
-        }
+            Console.WriteLine("\nEl numero ingresado es menor o igual a 0");
 
-        Console.WriteLine($"\nEl número invertido es: {numeroInvertido}");
+        }else
+        {
+            //Obtengo la longitud del número ingresado
+            longitudNumero = textoNumero.Length;
+            string numeroInvertido = "";
+
+            //Invierto el número ingresado
+            for (int i = 0; i < longitudNumero; i++)
+            {
+                numeroInvertido = numeroInvertido + textoNumero[longitudNumero-1-i];
+            }
+
+            Console.WriteLine($"\nEl número invertido es: {numeroInvertido}");
+        }
 
     }else
     {
