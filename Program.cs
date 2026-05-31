@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 
 int operacion, continuar = 0;
-string opcion, numero1, numero2;
+string opcion, numero1, numero2, seguir;
 double num1, num2, resultado;
 
 Console.WriteLine("***----- CALCULADORA MEJORADA -----***");
@@ -22,11 +22,11 @@ do
     {
         Console.WriteLine("\nEl número ingresado no se encuentra dentro de las opciones dadas");
     
-    }else if (operacion >= 1 && operacion <= 4) // Verifico que el número ingresado sea una de las opciones para las operaciones básicas
+    }else if (operacion >= 1 && operacion <= 4) // Se realiza la operación básica elegida
     {
         Console.WriteLine("\nIngrese los numeros que desea calcular");
 
-        do
+        do //Controlo que el usuario no ingrese datos no válidos
         {
             Console.WriteLine("\nNumero 1: ");
             numero1 = Console.ReadLine();
@@ -36,12 +36,12 @@ do
                 Console.WriteLine("\nEl dato ingresado no es un número. Ingrese nuevamente un dato válido");
             } 
 
-        } while (!double.TryParse(numero1, out num1));
+        } while (!double.TryParse(numero1, out num1)); 
 
        do
        {
 
-            do
+            do //Controlo que el usuario no ingrese datos no válidos
             {
                 Console.WriteLine("\nNumero 2: ");
                 numero2 = Console.ReadLine();
@@ -53,7 +53,7 @@ do
 
             } while (!double.TryParse(numero2, out num2));
 
-            switch (operacion)
+            switch (operacion) 
             {
                 case 1:
                     resultado = num1 + num2;
@@ -72,7 +72,7 @@ do
 
                 case 4:
                     
-                        if (num2 == 0)
+                        if (num2 == 0) 
                         {
                             Console.WriteLine("\nNo se puede dividir sobre 0. Ingrese un nuevo valor para el Numero2");
                             
@@ -84,15 +84,15 @@ do
                     
                     break;
             }
-       } while (operacion == 4 && num2 == 0);
+       } while (operacion == 4 && num2 == 0); // Controlo que el usuario no divida sobre 0
 
-    }else
+    }else //Se realiza la operaciones avanzadas elegida
     {
         Console.WriteLine("\nIngrese el numero que desea calcular");
 
         do
         {
-            do
+            do //Controlo que el usuario no ingrese datos no válidos
             {
                 Console.WriteLine("\nNumero 1: ");
                 numero1 = Console.ReadLine();
@@ -144,24 +144,27 @@ do
                     break;
                 
             }
-        } while (operacion == 7 && num1 < 0);
+        } while (operacion == 7 && num1 < 0); // Controlo que el usuario no ingrese valores no válidos para la operación raíz cuadrada
     }
 
-    if (!(operacion > 9 || operacion < 0) && int.TryParse(opcion, out operacion))
+    // Le pregunto al usuario si desea seguir realizando operaciones
+
+    if (!(operacion > 9 || operacion < 0) && int.TryParse(opcion, out operacion)) // Controlo que el usuario no este ingresando datos no válidos
     {
         Console.WriteLine("\n¿Desea realizar otra operación?");
         
-        Console.WriteLine("\n SÍ = 0; NO = 1");
-        continuar = int.Parse(Console.ReadLine());
-
-        if (continuar == 1)
+        Console.WriteLine("\n SÍ = 0; NO = presione cualquiera tecla");
+        seguir = Console.ReadLine();
+        
+        if (!int.TryParse(seguir, out continuar) || continuar != 0)
         {
             Console.WriteLine("\n¡Hasta Pronto!");
+            continuar = 1;
         }
     }
 
 
-} while (!int.TryParse(opcion, out operacion) || operacion > 9 || operacion < 0 || continuar == 0);
+} while (continuar == 0); // El programa sigue iterando hasta que el usuario decida
 
 Console.WriteLine("\n***----- MÁXIMO Y MÍNIMO -----***");
 Console.WriteLine("\nIngrese dos números para que el programa determine cuál es el máximo y cuál es el mínimo entre los dos");
@@ -171,18 +174,18 @@ do
     Console.WriteLine("\nNumero 1: ");
     numero1 = Console.ReadLine();
 
-    if (!double.TryParse(numero1, out num1))
+    if (!double.TryParse(numero1, out num1)) //Controlo que el usuario no ingrese datos no válidos
     {
         Console.WriteLine("\nEl dato ingresado no es un número. Ingrese nuevamente un dato válido");
 
     } else
     {
-        do
+        do //Controlo que el usuario no ingrese datos no válidos
         {
            Console.WriteLine("\nNumero 2: ");
             numero2 = Console.ReadLine();
 
-            if (!double.TryParse(numero2, out num2))
+            if (!double.TryParse(numero2, out num2)) 
             {
                 Console.WriteLine("\nEl dato ingresado no es un número. Ingrese nuevamente un dato válido");
             } 
@@ -190,7 +193,7 @@ do
         } while (!double.TryParse(numero2, out num2));
         
 
-        if (num1 > num2)
+        if (num1 > num2) // Muestra por pantalla cuál de los dos números ingresados es el máximo y cuál es el mínimo, o si ambos son iguales
         {
             Console.WriteLine($"\nEl máximo entre los dos es {num1} y el mínimo entre los dos es {num2}");
         
