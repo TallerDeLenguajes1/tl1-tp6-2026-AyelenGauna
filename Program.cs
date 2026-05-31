@@ -14,15 +14,15 @@ do
     Console.WriteLine("\nIngrese la opción que desea realizar:");
     opcion = Console.ReadLine();
 
-    if (!int.TryParse(opcion, out operacion))
+    if (!int.TryParse(opcion, out operacion)) // Verifico que el dato ingresado sea del válido 
     {
-        Console.WriteLine("\nValor ingresado no válido");
+        Console.WriteLine("\nDato ingresado no válido");
 
-    }else if (operacion > 9 || operacion < 0)
+    }else if (operacion > 9 || operacion < 0) // Verifico que el número ingresado este dentro de las opciones dadas
     {
-        Console.WriteLine("\nEl numero ingresado no se encuentra dentro de las opciones dadas");
+        Console.WriteLine("\nEl número ingresado no se encuentra dentro de las opciones dadas");
     
-    }else if (operacion >= 1 && operacion <= 4)
+    }else if (operacion >= 1 && operacion <= 4) // Verifico que el número ingresado sea una de las opciones para las operaciones básicas
     {
         Console.WriteLine("\nIngrese los numeros que desea calcular");
 
@@ -161,7 +161,7 @@ do
     }
 
 
-} while ((!int.TryParse(opcion, out operacion) || operacion > 9 || operacion < 0) && continuar == 0);
+} while (!int.TryParse(opcion, out operacion) || operacion > 9 || operacion < 0 || continuar == 0);
 
 Console.WriteLine("\n***----- MÁXIMO Y MÍNIMO -----***");
 Console.WriteLine("\nIngrese dos números para que el programa determine cuál es el máximo y cuál es el mínimo entre los dos");
