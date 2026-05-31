@@ -1,6 +1,8 @@
-﻿int operacion, continuar = 0;
-string opcion;
-double num1, resultado;
+﻿using System.Diagnostics;
+
+int operacion, continuar = 0;
+string opcion, numero1, numero2;
+double num1, num2, resultado;
 
 Console.WriteLine("***----- CALCULADORA MEJORADA -----***");
 
@@ -22,16 +24,34 @@ do
     
     }else if (operacion >= 1 && operacion <= 4)
     {
-        double num2;
-
         Console.WriteLine("\nIngrese los numeros que desea calcular");
-        Console.WriteLine("\nNumero 1: ");
 
-        num1 = double.Parse(Console.ReadLine());
+        do
+        {
+            Console.WriteLine("\nNumero 1: ");
+            numero1 = Console.ReadLine();
+
+            if (!double.TryParse(numero1, out num1))
+            {
+                Console.WriteLine("\nEl dato ingresado no es un número. Ingrese nuevamente un dato válido");
+            } 
+
+        } while (!double.TryParse(numero1, out num1));
+
        do
        {
-            Console.WriteLine("\nNumero 2: ");
-            num2 = double.Parse(Console.ReadLine());
+
+            do
+            {
+                Console.WriteLine("\nNumero 2: ");
+                numero2 = Console.ReadLine();
+
+                if (!double.TryParse(numero2, out num2))
+                {
+                    Console.WriteLine("\nEl dato ingresado no es un número. Ingrese nuevamente un dato válido");
+                } 
+
+            } while (!double.TryParse(numero2, out num2));
 
             switch (operacion)
             {
@@ -72,54 +92,62 @@ do
 
         do
         {
-            Console.WriteLine("\nNumero 1: ");
+            do
+            {
+                Console.WriteLine("\nNumero 1: ");
+                numero1 = Console.ReadLine();
 
-        num1 = double.Parse(Console.ReadLine());
-
-        switch (operacion)
-        {
-            case 0:
-                resultado = Math.Truncate(num1);
-                Console.WriteLine($"\n{num1} = {resultado}");
-                break;
-
-            case 5:
-                resultado = Math.Abs(num1); 
-                Console.WriteLine($"\n|{num1}| = {resultado}");
-                break;
-
-            case 6:
-                resultado = Math.Pow(num1, 2); 
-                Console.WriteLine($"\n{num1}² = {resultado}");
-                break;
-
-            case 7:
-                if (num1 < 0)
+                if (!double.TryParse(numero1, out num1))
                 {
-                    Console.WriteLine("\nEl numero debe ser mayor o igual a 0. Ingrese un nuevo valor");
-                }
-                else
-                {
-                    resultado = Math.Sqrt(num1); 
-                    Console.WriteLine($"\n{num1}½ = {resultado}");
-                }
-                break;
+                    Console.WriteLine("\nEl dato ingresado no es un número. Ingrese nuevamente un dato válido");
+                } 
 
-            case 8:
-                resultado = Math.Sin(num1); 
-                Console.WriteLine($"\nsen({num1}) = {resultado}");
-                break;
+            } while (!double.TryParse(numero1, out num1));
 
-            case 9:
-                resultado = Math.Cos(num1); 
-                Console.WriteLine($"\ncos({num1}) = {resultado}");
-                break;
-            
-        }
+            switch (operacion)
+            {
+                case 0:
+                    resultado = Math.Truncate(num1);
+                    Console.WriteLine($"\n{num1} = {resultado}");
+                    break;
+
+                case 5:
+                    resultado = Math.Abs(num1); 
+                    Console.WriteLine($"\n|{num1}| = {resultado}");
+                    break;
+
+                case 6:
+                    resultado = Math.Pow(num1, 2); 
+                    Console.WriteLine($"\n{num1}² = {resultado}");
+                    break;
+
+                case 7:
+                    if (num1 < 0)
+                    {
+                        Console.WriteLine("\nEl numero debe ser mayor o igual a 0. Ingrese un nuevo valor");
+                    }
+                    else
+                    {
+                        resultado = Math.Sqrt(num1); 
+                        Console.WriteLine($"\n{num1}½ = {resultado}");
+                    }
+                    break;
+
+                case 8:
+                    resultado = Math.Sin(num1); 
+                    Console.WriteLine($"\nsen({num1}) = {resultado}");
+                    break;
+
+                case 9:
+                    resultado = Math.Cos(num1); 
+                    Console.WriteLine($"\ncos({num1}) = {resultado}");
+                    break;
+                
+            }
         } while (operacion == 7 && num1 < 0);
     }
 
-    if (!(operacion > 9 || operacion < 0))
+    if (!(operacion > 9 || operacion < 0) && int.TryParse(opcion, out operacion))
     {
         Console.WriteLine("\n¿Desea realizar otra operación?");
         
@@ -134,3 +162,47 @@ do
 
 
 } while ((!int.TryParse(opcion, out operacion) || operacion > 9 || operacion < 0) && continuar == 0);
+
+Console.WriteLine("\n***----- MÁXIMO Y MÍNIMO -----***");
+Console.WriteLine("\nIngrese dos números para que el programa determine cuál es el máximo y cuál es el mínimo entre los dos");
+
+do
+{
+    Console.WriteLine("\nNumero 1: ");
+    numero1 = Console.ReadLine();
+
+    if (!double.TryParse(numero1, out num1))
+    {
+        Console.WriteLine("\nEl dato ingresado no es un número. Ingrese nuevamente un dato válido");
+
+    } else
+    {
+        do
+        {
+           Console.WriteLine("\nNumero 2: ");
+            numero2 = Console.ReadLine();
+
+            if (!double.TryParse(numero2, out num2))
+            {
+                Console.WriteLine("\nEl dato ingresado no es un número. Ingrese nuevamente un dato válido");
+            } 
+
+        } while (!double.TryParse(numero2, out num2));
+        
+
+        if (num1 > num2)
+        {
+            Console.WriteLine($"\nEl máximo entre los dos es {num1} y el mínimo entre los dos es {num2}");
+        
+        }else if (num1 < num2)
+        {
+            Console.WriteLine($"\nEl máximo entre los dos es {num2} y el mínimo entre los dos es {num1}");
+            
+        } else
+        {
+            Console.WriteLine($"\nAmbos números son iguales");
+            
+        }
+    }
+
+} while (!double.TryParse(numero1, out num1));
