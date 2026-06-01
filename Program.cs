@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-int operacion, continuar = 0;
+﻿int operacion, continuar = 0;
 string opcion, numero1, numero2, seguir;
 double num1, num2, resultado;
 
