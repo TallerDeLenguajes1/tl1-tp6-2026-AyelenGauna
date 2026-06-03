@@ -1,4 +1,6 @@
-﻿int numero = 0, longitudNumero;
+﻿// NÚMERO INVERTIDO
+
+int numero, longitudNumero;
 string textoNumero;
 bool resultado;
 
@@ -32,7 +34,8 @@ do
 
     }else
     {
-        Console.WriteLine("\nEl texto ingresado NO es un numero o es menor o igual 0\n");
+        Console.WriteLine("\nEl texto ingresado NO es un numero\n");
     }
 
 } while (!resultado || numero <= 0);
+
