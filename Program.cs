@@ -4,9 +4,11 @@ int numero, longitudNumero;
 string textoNumero;
 bool resultado;
 
+Console.WriteLine("\n***----- NÚMERO INVERTIDO -----***");
+
 do
 {
-    Console.WriteLine("Ingrese un número mayor a 0");
+    Console.WriteLine("\nIngrese un número mayor a 0");
     textoNumero = Console.ReadLine();
 
     resultado = int.TryParse(textoNumero, out numero); //se guarda en valor numérico en la variable "numero"
@@ -34,8 +36,23 @@ do
 
     }else
     {
-        Console.WriteLine("\nEl texto ingresado NO es un numero\n");
+        Console.WriteLine("\nEl texto ingresado NO es un número");
     }
 
 } while (!resultado || numero <= 0);
 
+// CADENA DE TEXTO
+
+string cadena1;
+int longCadena;
+
+Console.WriteLine("\n***----- CADENA DE TEXTO -----***");
+
+do
+{
+    Console.WriteLine("\nIngrese una cadena de texto:");
+    cadena1 = Console.ReadLine();
+    longCadena = cadena1.Length;
+    Console.WriteLine($"\nLongitud de la cadena: {longCadena}");
+
+} while (cadena1 == "");
