@@ -44,7 +44,7 @@ do
 // CADENA DE TEXTO
 
 string cadena1;
-int longCadena;
+int longCadena = 0, espacio = 0;
 
 Console.WriteLine("\n***----- CADENA DE TEXTO -----***");
 
@@ -52,7 +52,32 @@ do
 {
     Console.WriteLine("\nIngrese una cadena de texto:");
     cadena1 = Console.ReadLine();
-    longCadena = cadena1.Length;
-    Console.WriteLine($"\nLongitud de la cadena: {longCadena}");
+    
+    if (cadena1 != "")
+    {
+        longCadena = cadena1.Length;
 
-} while (cadena1 == "");
+        for (int i = 0; i < longCadena; i++)
+        {
+            if (cadena1[i] == ' ')
+            {
+                espacio ++;
+            }
+        }
+
+        if (espacio == longCadena)
+        {
+            Console.WriteLine("\nPor favor ingrese una cadena de texto nuevamente");
+
+        }else
+        {
+            Console.WriteLine($"\nLongitud de la cadena: {longCadena}");
+            
+        }
+
+    }else
+    {
+        Console.WriteLine("\nNo se ha ingresado ninguna cadena de texto. Por favor intentelo de nuevo");
+    }
+
+} while (cadena1 == "" || longCadena == espacio);
