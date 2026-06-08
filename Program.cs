@@ -48,7 +48,7 @@ int longCadena = 0, espacio = 0;
 
 Console.WriteLine("\n***----- CADENA DE TEXTO -----***");
 
-do
+do //CADENA 1
 {
     Console.WriteLine("\nIngrese una cadena de texto:");
     cadena1 = Console.ReadLine();
@@ -85,8 +85,7 @@ do
 } while (cadena1 == "" || longCadena == espacio);
 
 
-
-do
+do //CADENA 2
 {
     Console.WriteLine("\nIngrese otra cadena de texto:");
     cadena2 = Console.ReadLine();
@@ -130,3 +129,62 @@ do
     }
 
 } while (cadena2 == "" || longCadena == espacio || string.Compare(cadena1, cadena2, true) == 0);
+
+    //SUBCADENA DE CADENA 2
+
+string inicioS, finalS, subCadena;
+int inicioI, finalI;
+
+Console.WriteLine($"\nExtraiga una subcadena de la última cadena ingresada, de 0 a {longCadena}");
+
+do
+{
+    Console.WriteLine("\nInicio:");
+    inicioS = Console.ReadLine();
+
+    if (int.TryParse(inicioS, out inicioI) && inicioI >= 0 && inicioI <= longCadena)
+    {
+        do
+        {
+            do
+            {
+                Console.WriteLine("\nFinal:");
+                finalS = Console.ReadLine();
+
+                if (int.TryParse(finalS, out finalI) && finalI == inicioI)
+                {
+                    Console.WriteLine("\nLos datos ingresados son iguales. Intentelo de nuevo");
+                }
+
+            } while (finalI == inicioI);
+            
+
+            if (int.TryParse(finalS, out finalI) && finalI <= longCadena && finalI >= 0)
+            {
+                if (inicioI > finalI)
+                {
+                    int p;
+                    p = inicioI;
+                    inicioI = finalI;
+                    finalI = p;
+                }
+
+                int fin = finalI - inicioI;
+                subCadena = cadena2.Substring(inicioI, fin);
+
+                Console.WriteLine($"\nSubcadena extraida: {subCadena}");
+                    
+
+            }else
+            {
+                Console.WriteLine("\nEl dato ingresado es incorrecto. Intentelo de nuevo");
+            }
+            
+        } while (!int.TryParse(finalS, out finalI) || !(finalI <= longCadena && finalI >= 0));
+
+    }else
+    {
+        Console.WriteLine("\nEl dato ingresado es incorrecto. Intentelo de nuevo");
+    }
+
+} while (!int.TryParse(inicioS, out inicioI) || !(inicioI >= 0 && inicioI <= longCadena));
